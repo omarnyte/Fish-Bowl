@@ -1,15 +1,19 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
 
 const routes = require('./routes/index');
 
 const app = express();
 
 // middleware 
+// app.set('views', path.join(__dirname, 'views')); 
+// app.set('view engine', 'pug');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', routes);
+app.get('/', routes);
 
 // // If that above routes didnt work, we 404 them and forward to error handler
 // app.use(errorHandlers.notFound);
