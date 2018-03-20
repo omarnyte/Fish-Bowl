@@ -5,9 +5,10 @@
     "node": ">= 7.6.0"
   },
   "scripts": {
+    "dev": "nodemon start.js",    
     "prod": "node ./start.js",
-    "watch": "nodemon ./start.js --ignore public/",
-    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name"
+    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
+    "watch": "nodemon ./start.js --ignore public/"    
   },
   "dependencies": {
     "babel-core": "^6.26.0",
