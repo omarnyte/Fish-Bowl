@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const roomController = require('../controllers/roomController');
+
 // API 
-router.get('/api', (req, res) => {
-    // express.static(__dirname + '/');
-    res.send('api');
-});
+router.get('/room', roomController.getRoom);
 
 module.exports = router;
 

@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "nodemon start.js",    
     "prod": "node ./start.js",
-    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
-    "watch": "nodemon ./start.js --ignore public/"    
+    "start": "concurrently \"npm run watch\" ",
+    "watch": "nodemon start.js"    
   },
   "dependencies": {
     "babel-core": "^6.26.0",
