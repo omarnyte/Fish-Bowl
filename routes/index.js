@@ -16,7 +16,7 @@ router.patch('/api/room/:roomSlug/join', catchErrors(roomController.joinRoom));
 // Game 
 router.get('/api/game/:gameId', catchErrors(gameController.getGame));
 router.post('/api/game', catchErrors(gameController.createGame));
-// router.patch('/api/game/:gameId/clues', catchErrors(gameController))
+router.patch('/api/game/:gameId/clues', catchErrors(gameController.addClues));
 
 module.exports = router;
 
