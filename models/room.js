@@ -27,5 +27,10 @@ const roomSchema = new Schema({
     previousGames: Object // maybe unnecessary
 });
 
+// indexes 
+roomSchema.index({
+    slug: 'text',
+});
+
 
 module.exports = mongoose.model('Room', roomSchema);
