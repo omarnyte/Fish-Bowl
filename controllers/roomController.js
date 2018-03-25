@@ -21,8 +21,8 @@ exports.createRoom = async (req, res) => {
         slug = Math.floor(Math.random() * (9999 - 1000) + 1000).toString();
     }
     rooms.slug = slug;
-
     room.save();
+    
     res.json(room)
 };
 

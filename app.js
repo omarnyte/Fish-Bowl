@@ -1,8 +1,12 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const flash = require('connect-flash');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const routes = require('./routes/index');
+
 
 const app = express();
 
@@ -10,11 +14,20 @@ const app = express();
 // app.set('views', path.join(__dirname, 'views')); 
 // app.set('view engine', 'pug');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
+
+app.use(session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+app.use(flash());
 
 app.use('/', routes);
 
