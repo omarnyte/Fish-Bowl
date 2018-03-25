@@ -55,7 +55,9 @@ const gameSchema = new Schema({
         type: Number,
         default: 0
     },
-    scores: Object // this is vague for now, but eventually let's figure out how to store game score
+    // this is vague for now, but eventually let's figure out 
+    // how to store game scores appropriately
+    scores: Object
 });
 
 module.exports = mongoose.model('Game', gameSchema);
