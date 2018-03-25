@@ -11,10 +11,12 @@ const roomController = require('../controllers/roomController');
 // Room 
 router.get('/api/room/:roomSlug', catchErrors(roomController.getRoom));
 router.post('/api/room', catchErrors(roomController.createRoom));
+router.patch('/api/room/:roomSlug/join', catchErrors(roomController.joinRoom));
 
 // Game 
 router.get('/api/game/:gameId', catchErrors(gameController.getGame));
 router.post('/api/game', catchErrors(gameController.createGame));
+// router.patch('/api/game/:gameId/clues', catchErrors(gameController))
 
 module.exports = router;
 

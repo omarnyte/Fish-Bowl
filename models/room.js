@@ -32,5 +32,4 @@ roomSchema.index({
     slug: 'text',
 });
 
-
 module.exports = mongoose.model('Room', roomSchema);

@@ -12,7 +12,7 @@ exports.getRoom = async (req, res) => {
 
 exports.createRoom = async (req, res) => {    
     const room = await (new Room());
-    room.players[0] = {username: req.body.username};
+    room.players[0] = { username: req.body.username };
 
     // create random, unique slug
     let slug = Math.random().toString(36).substr(2, 5);
@@ -24,4 +24,19 @@ exports.createRoom = async (req, res) => {
     
     res.json(room)
 };
+
+exports.joinRoom = async (req, res) => {
+    console.log(req.body)
+    const room = await Room.findOne({ slug: req.params.roomSlug });
+    if (!room) {
+        res.flash('No room found!');
+        return;   
+    } 
+
+    // should this be a model method? 
+    // ensure that name doesn't already exist (can also be done real-time on the frontend with an API call)
+    room.players.push({ username: req.body.username });
+    Room.addPlayer(req.body.username);
+    res.json(room);
+}
 
