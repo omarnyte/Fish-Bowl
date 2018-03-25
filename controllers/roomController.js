@@ -16,9 +16,9 @@ exports.createRoom = async (req, res) => {
 
     // create random, unique slug
     let slug = Math.random().toString(36).substr(2, 5);
-    while (Room.find({slug})) {
-        slug = Math.random().toString(36).substr(2, 5);
-    }
+//     while (Room.find({slug})) {
+//         slug = Math.random().toString(36).substr(2, 5);
+//     }
     rooms.slug = slug;
     room.save();
     
