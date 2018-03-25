@@ -10,9 +10,9 @@ mongoose.connection.on('error', (err) => {
     console.error(`MONGOOSE ERROR → ${err.message}`);
 });
 
-
 // import models 
 require('./models/Room');
+require('./models/Game');
 
 // start app 
 const app = require('./app');
