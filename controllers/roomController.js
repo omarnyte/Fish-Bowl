@@ -10,7 +10,7 @@ exports.getRoom = async (req, res) => {
     }
 };
 
-exports.createRoom = async (req, res) => {
+exports.createRoom = async (req, res) => {    
     const room = await (new Room());
     room.players[0] = {username: req.body.username};
 
@@ -19,7 +19,7 @@ exports.createRoom = async (req, res) => {
 //     while (Room.find({slug})) {
 //         slug = Math.random().toString(36).substr(2, 5);
 //     }
-    rooms.slug = slug;
+    room.slug = slug;
     room.save();
     
     res.json(room)

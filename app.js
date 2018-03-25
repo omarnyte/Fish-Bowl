@@ -3,8 +3,10 @@ const express = require('express');
 const flash = require('connect-flash');
 const path = require('path');
 const session = require('express-session');
+const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 
+// const helpers = require('./helpers');
 const routes = require('./routes/index');
 
 
@@ -28,6 +30,14 @@ app.use(session({
 }));
 
 app.use(flash());
+
+app.use((req, res, next) => {
+    // res.locals.h = helpers;
+    res.locals.flashes = req.flash();
+    res.locals.user = req.user || null;
+    res.locals.currentPath = req.path;
+    next();
+});
 
 app.use('/', routes);
 
