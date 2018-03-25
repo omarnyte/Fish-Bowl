@@ -5,10 +5,10 @@
     "node": ">= 7.6.0"
   },
   "scripts": {
-    "dev": "nodemon start.js",    
+    "dev": "nodemon start.js",
     "prod": "node ./start.js",
     "start": "concurrently \"npm run watch\" ",
-    "watch": "nodemon start.js"    
+    "watch": "nodemon start.js"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
@@ -16,8 +16,11 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2017": "^6.24.1",
     "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "flash": "^1.1.0",
     "mongoose": "^5.0.9",
     "nodemon": "^1.17.1",
     "webpack": "^4.1.1"
