@@ -4,3 +4,10 @@ export const createRoom = () => (
         url: '/api/room'
     })
 );
+
+export const getRoom = (slug) => (
+    $.ajax({
+        method: 'GET',
+        url: `/api/room/${slug}`
+    })
+);

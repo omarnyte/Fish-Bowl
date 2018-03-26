@@ -4,8 +4,8 @@ import {
     Redirect,
     Switch,
     Link,
-    HashRouter
 } from 'react-router-dom';
+
 
 import EnterRoom from './enterRoom';
 import Lobby from './lobby';

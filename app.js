@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+var favicon = require('serve-favicon')
 const flash = require('connect-flash');
 const path = require('path');
 const session = require('express-session');
@@ -12,7 +13,10 @@ const routes = require('./routes/index');
 
 const app = express();
 
+
 // middleware 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
+
 // app.set('views', path.join(__dirname, 'views')); 
 // app.set('view engine', 'pug');
 
