@@ -32,4 +32,12 @@ roomSchema.index({
     slug: 'text',
 });
 
+// hooks // 
+// create random, unique slug
+roomSchema.pre('validate', function (next) {
+    // TODO make slug unique
+    if (!this.isNew) return next;
+    this.slug = Math.random().toString(36).substr(2, 5);
+});
+
 module.exports = mongoose.model('Room', roomSchema);
