@@ -11,8 +11,8 @@ mongoose.connection.on('error', (err) => {
 });
 
 // import models 
-require('./models/Room');
-require('./models/Game');
+require('./models/room');
+require('./models/game');
 
 // start app 
 const app = require('./app');
