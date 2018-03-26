@@ -11,8 +11,9 @@ exports.getRoom = async (req, res) => {
 };
 
 exports.createRoom = async (req, res) => {    
+    console.log(req.body)
     const room = await (new Room());
-    // room.players[0] = { username: req.body.username };
+    room.players[0] = { displayName: req.body.displayName };
     room.save();
     
     res.json(room)
@@ -28,8 +29,8 @@ exports.joinRoom = async (req, res) => {
 
     // should this be a model method? 
     // ensure that name doesn't already exist (can also be done real-time on the frontend with an API call)
-    room.players.push({ username: req.body.username });
-    Room.addPlayer(req.body.username);
+    room.players.push({ displayName: req.body.displayName });
+    Room.addPlayer(req.body.displayName);
     res.json(room);
 }
 

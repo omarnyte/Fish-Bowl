@@ -4,9 +4,9 @@ const ObjectId = Schema.Types.ObjectId;
 mongoose.Promise = global.Promise;
 
 const playerSchema = new Schema({
-    username: {
+    displayName: {
         type: String,
-        required: "Username is required"
+        required: "Display Name is required"
     }
 });
 

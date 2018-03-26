@@ -35,7 +35,7 @@ const teamSchema = new Schema({
         required: 'Team must have a name',
         maxlength: [50, 'Team names must be shorter than 50 characters long.']
     },
-    players: [String] // this should be an array of players' usernames
+    players: [String] // this should be an array of players' display names
 });
 
 const gameSchema = new Schema({

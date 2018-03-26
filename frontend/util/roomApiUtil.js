@@ -1,7 +1,8 @@
-export const createRoom = () => (
+export const createRoom = (displayName) => (
     $.ajax({
         method: 'POST',
-        url: '/api/room'
+        url: '/api/room',
+        data: displayName
     })
 );
 
