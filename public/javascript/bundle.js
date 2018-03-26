@@ -75,11 +75,11 @@
 /*!*******************************!*\
   !*** ./frontend/fishBowl.jsx ***!
   \*******************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n// import Root from './components/root';\n\n// document.addEventListener('DOMContentLoaded', () => {\n//     const root = document.getElementById('root');\n//     ReactDOM.render(<Root />, root);\n// });\n\n//# sourceURL=webpack:///./frontend/fishBowl.jsx?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// import Root from './components/root';\n\ndocument.addEventListener('DOMContentLoaded', function () {\n    var root = document.getElementById('root');\n    _reactDom2.default.render(_react2.default.createElement(\n        'h1',\n        null,\n        'Welcome to Fish Bowl'\n    ), root);\n});\n\n//# sourceURL=webpack:///./frontend/fishBowl.jsx?");
 
 /***/ }),
 

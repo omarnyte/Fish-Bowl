@@ -5,8 +5,8 @@
     "node": ">= 7.6.0"
   },
   "scripts": {
-    "assets": "webpack --mode development ./frontend/fishBowl.jsx --output ./public/javascript/bundle.js",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\"  nodemon start.js",
+    "assets": "webpack --watch --mode development ./frontend/fishBowl.jsx --output ./public/javascript/bundle.js",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\" ",
     "start": "node ./start.js",
     "watch": "nodemon ./start.js"
   },
