@@ -79,7 +79,31 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar App = function App() {\n    return _react2.default.createElement(\n        'div',\n        { className: 'container-fluid' },\n        _react2.default.createElement('img', { src: 'logo.png', alt: 'Fish Bowl Logo', className: 'img-responsive' }),\n        _react2.default.createElement(\n            'button',\n            { className: 'btn btn-block btn-primary' },\n            'New Room'\n        ),\n        _react2.default.createElement(\n            'button',\n            { className: 'btn btn-block btn-primary' },\n            'Join Room'\n        )\n    );\n};\n\nexports.default = App;\n\n//# sourceURL=webpack:///./frontend/components/app.jsx?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nvar _enterRoom = __webpack_require__(/*! ./enterRoom */ \"./frontend/components/enterRoom.jsx\");\n\nvar _enterRoom2 = _interopRequireDefault(_enterRoom);\n\nvar _lobby = __webpack_require__(/*! ./lobby */ \"./frontend/components/lobby.jsx\");\n\nvar _lobby2 = _interopRequireDefault(_lobby);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar App = function App() {\n    return _react2.default.createElement(\n        'div',\n        { className: 'container-fluid' },\n        _react2.default.createElement(\n            'header',\n            null,\n            _react2.default.createElement('img', { src: 'logo.png', alt: 'Fish Bowl Logo', className: 'img-responsive' })\n        ),\n        _react2.default.createElement(\n            _reactRouterDom.Switch,\n            null,\n            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _lobby2.default }),\n            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/new-room', component: _enterRoom2.default }),\n            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/join-room', component: _enterRoom2.default })\n        )\n    );\n};\n\nexports.default = App;\n\n//# sourceURL=webpack:///./frontend/components/app.jsx?");
+
+/***/ }),
+
+/***/ "./frontend/components/enterRoom.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/enterRoom.jsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar EnterRoom = function EnterRoom() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        'In EnterRoom'\n    );\n};\n\nexports.default = EnterRoom;\n\n//# sourceURL=webpack:///./frontend/components/enterRoom.jsx?");
+
+/***/ }),
+
+/***/ "./frontend/components/lobby.jsx":
+/*!***************************************!*\
+  !*** ./frontend/components/lobby.jsx ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Lobby = function Lobby() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n            _reactRouterDom.Link,\n            { to: '/new-room' },\n            _react2.default.createElement(\n                'button',\n                { className: 'btn btn-block btn-primary' },\n                'New Room'\n            )\n        ),\n        _react2.default.createElement(\n            _reactRouterDom.Link,\n            { to: '/join-room' },\n            _react2.default.createElement(\n                'button',\n                { className: 'btn btn-block btn-primary' },\n                'Join Room'\n            )\n        )\n    );\n};\n\nexports.default = Lobby;\n\n//# sourceURL=webpack:///./frontend/components/lobby.jsx?");
 
 /***/ }),
 
