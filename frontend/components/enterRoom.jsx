@@ -17,26 +17,43 @@ class EnterRoom  extends React.Component {
     }
 
     handleInputChange(e) {
-        console.dir(e.target)
         const displayName = e.target.value;
-        this.setState({ displayName })
-        if (displayName.length >= 20) {
-            e.target.parentElement.classList.add('has-error');
-            console.log('too long!');
-            e.target.classList.add('input-invalid');
-
-        } 
+        this.setState({ displayName });
+        
+        const button = document.querySelector('button');
+        if (this.validateDisplayName(displayName, e)) {
+            // enable submit button 
+            button.removeAttribute('disabled');
+        } else {
+            button.setAttribute('disabled', 'disabled');
+        }
     }
     
     handleSubmit(e) {
         e.preventDefault();
         if (this.props.match.path === '/new-room') {
-            // TODO add logic to prevent submission of form if display name is too long
             const displayName = this.state.displayName;
             createRoom({ displayName }).then(resp => console.log(resp));
         } else {
             getRoom('ji8v2').then(resp => console.log(resp));
         }
+    }
+
+    // Validations 
+    validateDisplayName(str, e) {
+        // validate length 
+        if (str.length === 0) {
+            e.target.parentElement.classList.remove('has-success', 'has-error');
+            return false;
+        } else if (str.length >= 20) { 
+            e.target.parentElement.classList.add('has-error');
+            return false; 
+        }
+
+        e.target.parentElement.classList.add('has-success');
+        return true;
+
+        // validate availability 
     }
     
     render() {
@@ -54,7 +71,7 @@ class EnterRoom  extends React.Component {
                         onChange={this.handleInputChange}
                         id="display-name-input" aria-describedby="display-name-input"></input>
                     <div className="col-xs-10">
-                        <button className="btn btn-default">
+                        <button className="btn btn-default" disabled="disabled">
                             {path === "/new-room" ? "Create Room" : "Join Room"}
                         </button>
                     </div>
