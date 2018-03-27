@@ -53,7 +53,8 @@ class EnterRoom  extends React.Component {
         e.target.parentElement.classList.add('has-success');
         return true;
 
-        // validate availability 
+        // validate availability only when joining, not creating, room
+        if (this.props.match.path === "/new-room") return true;
     }
     
     render() {
@@ -85,20 +86,3 @@ class EnterRoom  extends React.Component {
 
 export default EnterRoom;
 
-{/* <div class="has-success has-feedback">
-    <form className="form-control" onSubmit={this.handleSubmit}>
-        <label> Enter a display name</label>
-        <input
-            type="text"
-            className="form-control"
-            value={displayName}
-            onChange={this.handleInputChange}
-        />
-        <div className="col-xs-10">
-            <button className="btn btn-default">
-                {path === "/new-room" ? "Create Room" : "Join Room"}
-            </button>
-        </div>
-    </form>
-</div> */}
-    

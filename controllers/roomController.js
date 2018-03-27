@@ -5,6 +5,7 @@ exports.getRoom = async (req, res) => {
     const room = await Room.findOne({ slug: req.params.roomSlug });
     if (room) {
         res.json(room);
+        return;
     } else {
         res.flash('No room found!');
     }
@@ -34,3 +35,21 @@ exports.joinRoom = async (req, res) => {
     res.json(room);
 }
 
+exports.checkNameAvailablity = async (req, res) => {
+    const room = await Room.findOne({ slug: req.params.roomSlug });
+    
+    for (let i = 0; i < room.players.length; i++) {
+        if (req.body.displayName === room.players[i].displayName) {
+            res.json('false')
+            return;
+        }
+    }
+
+    res.json('true');
+    
+    // if (room.players.includes(req.body.displayName)) {
+    //     res.send('false');
+    // } else {
+    //     res.send('hello')
+    // }
+}
