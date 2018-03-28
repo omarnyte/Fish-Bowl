@@ -15,8 +15,6 @@ class EnterRoom  extends React.Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.enableButton = this.enableButton.bind(this);
-        this.disableButton = this.disableButton.bind(this);
     }
 
     handleInputChange(e) {
@@ -24,12 +22,6 @@ class EnterRoom  extends React.Component {
         this.setState({ displayName });
         
         this.validateDisplayNameLength(displayName, e) &&this.validateDisplayNameAvailability(displayName, e)
-            // const button = document.querySelector('button');
-            // button.removeAttribute('disabled');
-        // } else {
-        //     const button = document.querySelector('button');
-        //     button.setAttribute('disabled', 'disabled');
-        // }
     }
     
     handleSubmit(e) {
@@ -44,51 +36,53 @@ class EnterRoom  extends React.Component {
 
     // Validations 
     validateDisplayNameLength(str, e) {
+        console.log('validating length')
         if (str.length === 0) {
             e.target.parentElement.classList.remove('has-success', 'has-error');
-            this.disableButton();
+            this.setButtonStatus('disable');
+            return false;
         } else if (str.length >= 20) { 
             e.target.parentElement.classList.add('has-error');
-            this.disableButton();
+            this.setButtonStatus('disable');
+            return false;
         } else {
             e.target.parentElement.classList.remove('has-error');
             e.target.parentElement.classList.add('has-success');
-            this.enableButton();
+            this.setButtonStatus('enable');
+            return true;
         }
     }
 
     validateDisplayNameAvailability(str, e) {
+        console.log('validating availability')
         const button = document.querySelector('button');
 
-        if (this.props.match.path === '/new-room') {
-            return;
-        };
-        
+        if (this.props.match.path === '/new-room') return;
+  
         e.persist();
         checkNameAvailability(str).then(resp => {
+            console.log('resp', resp)
             if (resp === false) {
                 e.target.parentElement.classList.remove('has-success');
                 e.target.parentElement.classList.add('has-error');
-                this.disableButton();
+                this.setButtonStatus('disable');
             } else {
                 e.target.parentElement.classList.remove('has-error');
                 e.target.parentElement.classList.add('has-success');
-                this.enableButton();
+                this.setButtonStatus('enable');
             }
         });
     }
 
     //helper methods
-    enableButton() {
-        console.log('enabling button');
+    setButtonStatus(status) {
         const button = document.querySelector('button');
-        button.removeAttribute('disabled');
-    }
-
-    disableButton() {
-        console.log('disabling button');
-        const button = document.querySelector('button');
-        button.setAttribute('disabled', 'disabled');
+        
+        if (status === 'enable' && button.disabled) {
+            button.removeAttribute('disabled');
+        } else if (status === 'disable' && !button.disabled) {
+            button.setAttribute('disabled', 'disabled');
+        }
     }
     
     render() {
@@ -121,33 +115,3 @@ class EnterRoom  extends React.Component {
 };
 
 export default EnterRoom;
-
-
-// validateDisplayName(str, e) {
-//     // validate length 
-//     if (str.length === 0) {
-//         e.target.parentElement.classList.remove('has-success', 'has-error');
-//         return false;
-//     } else if (str.length >= 20) {
-//         e.target.parentElement.classList.add('has-error');
-//         return false;
-//     }
-
-//     // TODO validate availability only when joining, not creating, room
-//     if (this.props.match.path === "/join-room") {
-//         checkNameAvailability(str).then((resp, e) => {
-//             if (resp === false) {
-//                 console.log(resp)
-//                 this.e.target.parentElement.classList.remove('has-success');
-//                 this.e.target.parentElement.classList.add('has-error');
-//                 return false;
-//             } else {
-//                 this.e.target.parentElement.classList.remove('has-error');
-//                 this.e.target.parentElement.classList.add('has-success');
-//             }
-//         });
-//     }
-
-//     e.target.parentElement.classList.remove('has-error');
-//     e.target.parentElement.classList.add('has-success');
-//     return true 
