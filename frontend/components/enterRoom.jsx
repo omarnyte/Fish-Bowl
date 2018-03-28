@@ -15,19 +15,21 @@ class EnterRoom  extends React.Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.enableButton = this.enableButton.bind(this);
+        this.disableButton = this.disableButton.bind(this);
     }
 
     handleInputChange(e) {
         const displayName = e.target.value;
         this.setState({ displayName });
         
-        const button = document.querySelector('button');
-        if (this.validateDisplayName(displayName, e)) {
-            // enable submit button 
-            button.removeAttribute('disabled');
-        } else {
-            button.setAttribute('disabled', 'disabled');
-        }
+        this.validateDisplayNameLength(displayName, e) &&this.validateDisplayNameAvailability(displayName, e)
+            // const button = document.querySelector('button');
+            // button.removeAttribute('disabled');
+        // } else {
+        //     const button = document.querySelector('button');
+        //     button.setAttribute('disabled', 'disabled');
+        // }
     }
     
     handleSubmit(e) {
@@ -41,32 +43,52 @@ class EnterRoom  extends React.Component {
     }
 
     // Validations 
-    validateDisplayName(str, e) {
-        e.persist()
-        
-        // validate length
+    validateDisplayNameLength(str, e) {
         if (str.length === 0) {
             e.target.parentElement.classList.remove('has-success', 'has-error');
-            return false;
+            this.disableButton();
         } else if (str.length >= 20) { 
             e.target.parentElement.classList.add('has-error');
-            return false; 
+            this.disableButton();
+        } else {
+            e.target.parentElement.classList.remove('has-error');
+            e.target.parentElement.classList.add('has-success');
+            this.enableButton();
         }
+    }
 
-        // TODO validate availability only when joining, not creating, room
+    validateDisplayNameAvailability(str, e) {
+        const button = document.querySelector('button');
+
+        if (this.props.match.path === '/new-room') {
+            return;
+        };
+        
+        e.persist();
         checkNameAvailability(str).then(resp => {
             if (resp === false) {
-                console.log(resp)
                 e.target.parentElement.classList.remove('has-success');
                 e.target.parentElement.classList.add('has-error');
-                return false;
+                this.disableButton();
             } else {
-                console.log(resp)
                 e.target.parentElement.classList.remove('has-error');
                 e.target.parentElement.classList.add('has-success');
-                return false;
+                this.enableButton();
             }
         });
+    }
+
+    //helper methods
+    enableButton() {
+        console.log('enabling button');
+        const button = document.querySelector('button');
+        button.removeAttribute('disabled');
+    }
+
+    disableButton() {
+        console.log('disabling button');
+        const button = document.querySelector('button');
+        button.setAttribute('disabled', 'disabled');
     }
     
     render() {
