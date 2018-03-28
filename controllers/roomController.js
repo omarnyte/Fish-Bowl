@@ -40,16 +40,10 @@ exports.checkNameAvailablity = async (req, res) => {
     
     for (let i = 0; i < room.players.length; i++) {
         if (req.body.displayName === room.players[i].displayName) {
-            res.json('false')
+            res.json(false)
             return;
         }
     }
 
-    res.json('true');
-    
-    // if (room.players.includes(req.body.displayName)) {
-    //     res.send('false');
-    // } else {
-    //     res.send('hello')
-    // }
+    res.json(true);
 }

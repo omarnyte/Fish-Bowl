@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import {
     createRoom,
-    getRoom
+    getRoom,
+    checkNameAvailability
 } from '../util/roomApiUtil';
 
 class EnterRoom  extends React.Component {
@@ -33,7 +34,7 @@ class EnterRoom  extends React.Component {
         e.preventDefault();
         if (this.props.match.path === '/new-room') {
             const displayName = this.state.displayName;
-            createRoom({ displayName }).then(resp => console.log(resp));
+            createRoom(displayName).then(resp => console.log(resp));
         } else {
             getRoom('ji8v2').then(resp => console.log(resp));
         }
@@ -41,7 +42,9 @@ class EnterRoom  extends React.Component {
 
     // Validations 
     validateDisplayName(str, e) {
-        // validate length 
+        e.persist()
+        
+        // validate length
         if (str.length === 0) {
             e.target.parentElement.classList.remove('has-success', 'has-error');
             return false;
@@ -50,11 +53,20 @@ class EnterRoom  extends React.Component {
             return false; 
         }
 
-        e.target.parentElement.classList.add('has-success');
-        return true;
-
-        // validate availability only when joining, not creating, room
-        if (this.props.match.path === "/new-room") return true;
+        // TODO validate availability only when joining, not creating, room
+        checkNameAvailability(str).then(resp => {
+            if (resp === false) {
+                console.log(resp)
+                e.target.parentElement.classList.remove('has-success');
+                e.target.parentElement.classList.add('has-error');
+                return false;
+            } else {
+                console.log(resp)
+                e.target.parentElement.classList.remove('has-error');
+                e.target.parentElement.classList.add('has-success');
+                return false;
+            }
+        });
     }
     
     render() {
@@ -63,7 +75,9 @@ class EnterRoom  extends React.Component {
 
         return (
             <div>
-                <form className="form-group has-feedback">
+                <form 
+                    className="form-group has-feedback"
+                    onSubmit={this.handleSubmit}>
                     <label className="control-label" >Please Enter a Display Name</label>
                     <input 
                         type="text"
@@ -86,3 +100,32 @@ class EnterRoom  extends React.Component {
 
 export default EnterRoom;
 
+
+// validateDisplayName(str, e) {
+//     // validate length 
+//     if (str.length === 0) {
+//         e.target.parentElement.classList.remove('has-success', 'has-error');
+//         return false;
+//     } else if (str.length >= 20) {
+//         e.target.parentElement.classList.add('has-error');
+//         return false;
+//     }
+
+//     // TODO validate availability only when joining, not creating, room
+//     if (this.props.match.path === "/join-room") {
+//         checkNameAvailability(str).then((resp, e) => {
+//             if (resp === false) {
+//                 console.log(resp)
+//                 this.e.target.parentElement.classList.remove('has-success');
+//                 this.e.target.parentElement.classList.add('has-error');
+//                 return false;
+//             } else {
+//                 this.e.target.parentElement.classList.remove('has-error');
+//                 this.e.target.parentElement.classList.add('has-success');
+//             }
+//         });
+//     }
+
+//     e.target.parentElement.classList.remove('has-error');
+//     e.target.parentElement.classList.add('has-success');
+//     return true 
