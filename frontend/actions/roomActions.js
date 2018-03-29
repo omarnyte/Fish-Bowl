@@ -9,6 +9,12 @@ export const fetchRoom = (slug) => dispatch => (
     })
 );
 
+export const createRoom = (displayName) => dispatch => (
+    roomAPIUtil.createRoom(displayName).then(roomResp => {
+        dispatch(receiveRoom(roomResp));
+    })
+);
+
 
 // sync actions 
 export const receiveRoom = (room) => ({
