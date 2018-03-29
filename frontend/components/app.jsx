@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 
 
-import EnterRoom from './enterRoom';
+import EnterRoomContainer from './enterRoom/enterRoomContainer';
 import Lobby from './lobby';
-import waitingRoom from './waitingRoom/waitingRoom';
+import WaitingRoomContainer from './waitingRoom/waitingRoomContainer';
 
 const App = () => (
     <div className="container-fluid">
@@ -20,9 +20,9 @@ const App = () => (
 
         <Switch>
             <Route exact path="/" component={Lobby} />
-            <Route exact path="/new-room" component={EnterRoom} />
-            <Route exact path="/join-room" component={EnterRoom} />
-            <Route exact path="/waiting-room" component={waitingRoom} />
+            <Route exact path="/new-room" component={EnterRoomContainer} />
+            <Route exact path="/join-room" component={EnterRoomContainer} />
+            <Route exact path="/waiting-room" component={WaitingRoomContainer} />
         </Switch>
 
     </div>

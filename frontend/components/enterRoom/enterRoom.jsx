@@ -5,7 +5,7 @@ import {
     createRoom,
     getRoom,
     checkNameAvailability
-} from '../util/roomApiUtil';
+} from '../../util/roomApiUtil';
 
 class EnterRoom  extends React.Component {
     constructor(props) {
@@ -27,11 +27,14 @@ class EnterRoom  extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.props.match.path === '/new-room') {
-            // const displayName = this.state.displayName;
-            // createRoom(displayName).then(resp => console.log(resp));
-            return (
-                <Link to="/waiting-room"></Link>
-            )
+            console.log('submitting!')
+            const displayName = this.state.displayName;
+            this.props.createRoom(displayName)
+                .then((resp) => this.props.history.push('/waiting-room'))
+            // return (
+            //     <Link to="/waiting-room"></Link>
+            // )
+            // this.props.history.push('/waiting-room');
         } else {
             // getRoom('ji8v2').then(resp => console.log(resp));
             return (
@@ -106,11 +109,13 @@ class EnterRoom  extends React.Component {
                         onChange={this.handleInputChange}
                         id="display-name-input" aria-describedby="display-name-input"></input>
                     <div className="col-xs-10">
-                        <Link to="/waiting-room">
-                            <button className="btn btn-default" disabled="disabled">
-                                {path === "/new-room" ? "Create Room" : "Join Room"}
-                            </button>
-                        </Link>
+                        <button 
+                            type="submit"
+                            className="btn btn-default" 
+                            disabled="disabled"
+                        >
+                            {path === "/new-room" ? "Create Room" : "Join Room"}
+                        </button>
                     </div>
                 </form>
 

@@ -1,11 +1,20 @@
 import React from 'react';
 
-const waitingRoom = () => {
-    return (
-        <div>
-            <h1>Currently in </h1>
-        </div>
-    )
+class WaitingRoom extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    
+    render() {
+        if (!this.props) return <p> loading </p>;
+        console.log(this.props)
+        return (
+            <div>
+                <h1>Currently in {this.props.room.slug}</h1>
+            </div>
+        )
+
+    }
 };
 
-export default waitingRoom;
+export default WaitingRoom;

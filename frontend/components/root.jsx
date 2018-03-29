@@ -11,7 +11,6 @@ const Root = ({ store }) => (
             <App />
         </BrowserRouter>
     </Provider>
-
 );
 
 export default Root;
