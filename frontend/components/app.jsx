@@ -9,6 +9,7 @@ import {
 
 import EnterRoom from './enterRoom';
 import Lobby from './lobby';
+import waitingRoom from './waitingRoom/waitingRoom';
 
 const App = () => (
     <div className="container-fluid">
@@ -21,6 +22,7 @@ const App = () => (
             <Route exact path="/" component={Lobby} />
             <Route exact path="/new-room" component={EnterRoom} />
             <Route exact path="/join-room" component={EnterRoom} />
+            <Route exact path="/waiting-room" component={waitingRoom} />
         </Switch>
 
     </div>

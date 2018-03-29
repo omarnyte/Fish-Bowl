@@ -27,16 +27,22 @@ class EnterRoom  extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.props.match.path === '/new-room') {
-            const displayName = this.state.displayName;
-            createRoom(displayName).then(resp => console.log(resp));
+            // const displayName = this.state.displayName;
+            // createRoom(displayName).then(resp => console.log(resp));
+            return (
+                <Link to="/waiting-room"></Link>
+            )
         } else {
-            getRoom('ji8v2').then(resp => console.log(resp));
+            // getRoom('ji8v2').then(resp => console.log(resp));
+            return (
+                <Link to="/waiting-room"></Link>
+            )
         }
+
     }
 
     // Validations 
     validateDisplayNameLength(str, e) {
-        console.log('validating length')
         if (str.length === 0) {
             e.target.parentElement.classList.remove('has-success', 'has-error');
             this.setButtonStatus('disable');
@@ -54,14 +60,12 @@ class EnterRoom  extends React.Component {
     }
 
     validateDisplayNameAvailability(str, e) {
-        console.log('validating availability')
         const button = document.querySelector('button');
 
         if (this.props.match.path === '/new-room') return;
   
         e.persist();
         checkNameAvailability(str).then(resp => {
-            console.log('resp', resp)
             if (resp === false) {
                 e.target.parentElement.classList.remove('has-success');
                 e.target.parentElement.classList.add('has-error');
@@ -102,9 +106,11 @@ class EnterRoom  extends React.Component {
                         onChange={this.handleInputChange}
                         id="display-name-input" aria-describedby="display-name-input"></input>
                     <div className="col-xs-10">
-                        <button className="btn btn-default" disabled="disabled">
-                            {path === "/new-room" ? "Create Room" : "Join Room"}
-                        </button>
+                        <Link to="/waiting-room">
+                            <button className="btn btn-default" disabled="disabled">
+                                {path === "/new-room" ? "Create Room" : "Join Room"}
+                            </button>
+                        </Link>
                     </div>
                 </form>
 
