@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
+// testing 
+import { fetchRoom } from './actions/roomActions';
+
 document.addEventListener('DOMContentLoaded', () => {
     let store = configureStore();
     
@@ -12,5 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // testing 
     window.store = store;
+    window.fetchRoom = fetchRoom;
 });
 

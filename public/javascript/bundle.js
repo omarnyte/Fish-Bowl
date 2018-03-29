@@ -71,6 +71,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/roomActions.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/roomActions.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.receiveRoom = exports.fetchRoom = exports.RECEIVE_ROOM = undefined;\n\nvar _roomApiUtil = __webpack_require__(/*! ../util/roomApiUtil */ \"./frontend/util/roomApiUtil.js\");\n\nvar roomAPIUtil = _interopRequireWildcard(_roomApiUtil);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar RECEIVE_ROOM = exports.RECEIVE_ROOM = 'RECEIVE_ROOM';\n\n// thunk actions \nvar fetchRoom = exports.fetchRoom = function fetchRoom(slug) {\n    return function (dispatch) {\n        return roomAPIUtil.getRoom(slug).then(function (roomResp) {\n            dispatch(receiveRoom(roomResp));\n        });\n    };\n};\n\n// sync actions \nvar receiveRoom = exports.receiveRoom = function receiveRoom(room) {\n    return {\n        type: RECEIVE_ROOM,\n        room: room\n    };\n};\n\n//# sourceURL=webpack:///./frontend/actions/roomActions.js?");
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -139,7 +151,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _root = __webpack_require__(/*! ./components/root */ \"./frontend/components/root.jsx\");\n\nvar _root2 = _interopRequireDefault(_root);\n\nvar _store = __webpack_require__(/*! ./store/store */ \"./frontend/store/store.js\");\n\nvar _store2 = _interopRequireDefault(_store);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\ndocument.addEventListener('DOMContentLoaded', function () {\n    var store = (0, _store2.default)();\n\n    var root = document.getElementById('root');\n    _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);\n\n    // testing \n    window.store = store;\n});\n\n//# sourceURL=webpack:///./frontend/fishBowl.jsx?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _root = __webpack_require__(/*! ./components/root */ \"./frontend/components/root.jsx\");\n\nvar _root2 = _interopRequireDefault(_root);\n\nvar _store = __webpack_require__(/*! ./store/store */ \"./frontend/store/store.js\");\n\nvar _store2 = _interopRequireDefault(_store);\n\nvar _roomActions = __webpack_require__(/*! ./actions/roomActions */ \"./frontend/actions/roomActions.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\ndocument.addEventListener('DOMContentLoaded', function () {\n    var store = (0, _store2.default)();\n\n    var root = document.getElementById('root');\n    _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);\n\n    // testing \n    window.store = store;\n    window.fetchRoom = _roomActions.fetchRoom;\n});\n\n// testing\n\n//# sourceURL=webpack:///./frontend/fishBowl.jsx?");
 
 /***/ }),
 
@@ -163,7 +175,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _freeze = __webpack_require__(/*! babel-runtime/core-js/object/freeze */ \"./node_modules/babel-runtime/core-js/object/freeze.js\");\n\nvar _freeze2 = _interopRequireDefault(_freeze);\n\nvar _merge = __webpack_require__(/*! lodash/merge */ \"./node_modules/lodash/merge.js\");\n\nvar _merge2 = _interopRequireDefault(_merge);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar roomReducer = function roomReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    var action = arguments[1];\n\n    (0, _freeze2.default)(state);\n    switch (action.type) {\n        default:\n            return state;\n    }\n};\n\nexports.default = roomReducer;\n\n//# sourceURL=webpack:///./frontend/reducers/roomReducer.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _freeze = __webpack_require__(/*! babel-runtime/core-js/object/freeze */ \"./node_modules/babel-runtime/core-js/object/freeze.js\");\n\nvar _freeze2 = _interopRequireDefault(_freeze);\n\nvar _merge = __webpack_require__(/*! lodash/merge */ \"./node_modules/lodash/merge.js\");\n\nvar _merge2 = _interopRequireDefault(_merge);\n\nvar _roomActions = __webpack_require__(/*! ../actions/roomActions */ \"./frontend/actions/roomActions.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar roomReducer = function roomReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    var action = arguments[1];\n\n    (0, _freeze2.default)(state);\n    var newState = (0, _merge2.default)({}, state);\n\n    switch (action.type) {\n        case _roomActions.RECEIVE_ROOM:\n            newState = action.room;\n            return newState;\n        default:\n            return state;\n    }\n};\n\nexports.default = roomReducer;\n\n//# sourceURL=webpack:///./frontend/reducers/roomReducer.js?");
 
 /***/ }),
 
