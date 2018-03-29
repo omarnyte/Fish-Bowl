@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 
 import entities from './entitiesReducer';
 
+
 const rootReducer = combineReducers({
-    entities
+    entities 
 });
 
 export default rootReducer; 

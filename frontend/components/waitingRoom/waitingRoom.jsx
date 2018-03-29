@@ -3,7 +3,7 @@ import React from 'react';
 const waitingRoom = () => {
     return (
         <div>
-            in the waiting room
+            <h1>Currently in </h1>
         </div>
     )
 };
