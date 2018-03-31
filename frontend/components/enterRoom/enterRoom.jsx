@@ -36,7 +36,6 @@ class EnterRoom  extends React.Component {
             // )
             // this.props.history.push('/waiting-room');
         } else {
-            // getRoom('ji8v2').then(resp => console.log(resp));
             return (
                 <Link to="/waiting-room"></Link>
             )
