@@ -43,7 +43,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', routes);
+app.get('/api/*', routes);
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // // If that above routes didnt work, we 404 them and forward to error handler
 // app.use(errorHandlers.notFound);
